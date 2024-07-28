@@ -43,7 +43,7 @@ def split_into_parts(img_path):
             # Apply postprocessing to clean up the image
             processed_img = postprocessing(cropped_img)
             processed_img.save('cropped_image'+str(i)+str(j)+'.jpg')
-            x += 78  # move to the next column
+            x += 79  # move to the next column
         y += 79  # move to the next row
         x = 10  # reset x to the starting position
 
@@ -78,6 +78,5 @@ def img_complete_processing():
     #full.png
     split_into_parts("screenshot.jpg")
     return extract_letters()
-    
-print(img_complete_processing())
 
+#print(img_complete_processing())
