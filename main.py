@@ -8,21 +8,13 @@ from trie_tree import Trie
 import screenshotter
 import img_processing
 
+
 startTime = time.time()
+letters = img_processing.img_complete_processing()
+endTime = time.time()
+print("Time taken: " + str(endTime - startTime) + " seconds")
 
-img_processing.img_complete_processing()
-
-letters = [["a", "a", "a", "a"], ["a", "a", "a", "a"], ["a", "a", "a", "a"], ["a", "a", "a", "a"]]
-
-for i in range(4):
-    for j in range(4):
-        #print("i is: " + str(i) + " j is: " + str(j))
-        #print("Image: cropped_image"+str(i)+str(j)+".jpg")
-        letter = pytesseract.image_to_string(Image.open("cropped_image"+str(i)+str(j)+".jpg"), config=(" --psm 10"))
-        letter = letter.replace('\n', '').replace('\r', '').strip()
-        #print(letter)
-        letters[i][j] = letter
-        
+startTime = time.time()
 print(letters)
  
 # Define the grid traversal directions for a 4x4 grid
@@ -114,8 +106,9 @@ all_words = find_all_words(letters)
 formatted_words = format_words_by_length(all_words)
 
 # Print the formatted words
-for length, words in formatted_words.items():
-    print(f"Words of length {length}: {', '.join(words)}")
+for length in sorted(formatted_words.keys()):
+    words = formatted_words[length]
+    print(f"Words of length {length}: {', '.join(words)} \n")
 
 endTime = time.time()
 print("Time taken: " + str(endTime - startTime) + " seconds")
